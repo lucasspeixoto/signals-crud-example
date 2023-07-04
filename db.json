@@ -1,0 +1,143 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "gender": "M"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "janesmith@example.com",
+      "gender": "F"
+    },
+    {
+      "id": 3,
+      "name": "Alex Johnson",
+      "email": "alexjohnson@example.com",
+      "gender": "M"
+    },
+    {
+      "id": 4,
+      "name": "Emily Davis",
+      "email": "emilydavis@example.com",
+      "gender": "F"
+    },
+    {
+      "id": 5,
+      "name": "Michael Brown",
+      "email": "michaelbrown@example.com",
+      "gender": "M"
+    },
+    {
+      "id": 6,
+      "name": "Olivia Wilson",
+      "email": "oliviawilson@example.com",
+      "gender": "F"
+    },
+    {
+      "id": 7,
+      "name": "William Thompson",
+      "email": "williamthompson@example.com",
+      "gender": "M"
+    },
+    {
+      "id": 8,
+      "name": "Sophia Martinez",
+      "email": "sophiamartinez@example.com",
+      "gender": "F"
+    },
+    {
+      "id": 9,
+      "name": "James Taylor",
+      "email": "jamestaylor@example.com",
+      "gender": "M"
+    },
+    {
+      "id": 10,
+      "name": "Emma Clark",
+      "email": "emmaclark@example.com",
+      "gender": "F"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Task 1",
+      "description": "Description for Task 1",
+      "userId": 1,
+      "completed": false
+    },
+    {
+      "id": 3,
+      "name": "Task 3",
+      "description": "Description for Task 3",
+      "userId": 1,
+      "completed": false
+    },
+    {
+      "id": 4,
+      "name": "Task 4",
+      "description": "Description for Task 4",
+      "userId": 2,
+      "completed": false
+    },
+    {
+      "id": 6,
+      "name": "Task 6",
+      "description": "Description for Task 6",
+      "userId": 3,
+      "completed": false
+    },
+    {
+      "id": 7,
+      "name": "Task 7",
+      "description": "Description for Task 7",
+      "userId": 4,
+      "completed": false
+    },
+    {
+      "id": 8,
+      "name": "Task 8",
+      "description": "Description for Task 8",
+      "userId": 5,
+      "completed": false
+    },
+    {
+      "id": 9,
+      "name": "Task 9",
+      "description": "Description for Task 9",
+      "userId": 6,
+      "completed": false
+    },
+    {
+      "id": 10,
+      "name": "Task 10",
+      "description": "Description for Task 10",
+      "userId": 7,
+      "completed": false
+    },
+    {
+      "userId": 1,
+      "name": "dasadasdsa",
+      "description": "dasdasdas",
+      "completed": false,
+      "id": 11
+    },
+    {
+      "userId": 10,
+      "name": "asdasd",
+      "description": "sadsadsa",
+      "completed": true,
+      "id": 12
+    },
+    {
+      "userId": 10,
+      "name": "sadsa",
+      "description": "dasdas",
+      "completed": true,
+      "id": 13
+    }
+  ]
+}

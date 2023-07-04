@@ -1,0 +1,101 @@
+import { DestroyRef, Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {
+  takeUntilDestroyed,
+  toObservable,
+  toSignal,
+} from '@angular/core/rxjs-interop';
+import { switchMap, tap } from 'rxjs';
+import { UserService } from '../users/user.service';
+
+import { Task } from './task.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+@Injectable()
+export class TaskService {
+  public destroyRef = inject(DestroyRef);
+
+  public http = inject(HttpClient);
+
+  public userService = inject(UserService);
+
+  public snackBar = inject(MatSnackBar);
+
+  public usersUrl = 'http://localhost:3000/users';
+
+  public tasksUrl = 'http://localhost:3000/tasks';
+
+  public taskIsDeleted = signal<boolean>(false);
+
+  public userTasks = signal<Task[]>([]); //WriteblaSignal
+
+  private userTasks$ = toObservable(this.userService.selectedUserId).pipe(
+    switchMap((userId) =>
+      this.http
+        .get<Task[]>(this.usersUrl + '/' + userId + '/tasks')
+        .pipe(tap((tasks) => this.userTasks.set(tasks)))
+    )
+  );
+
+  public readOnlyUserTasks = toSignal(this.userTasks$, {
+    initialValue: [] as Task[],
+  });
+
+  public addTaskStatus(newTask: Task): void {
+
+    this.http
+      .post(this.tasksUrl, newTask)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response) => {
+          const responseTaks = response as Task;
+          this.userTasks.update((task) => [...task, responseTaks]);
+        },
+        //! Error handling
+      });
+  }
+
+  public updteTaskStatus(task: Task, completed: boolean): void {
+    const completedTask = {
+      ...task,
+      completed: completed,
+    };
+
+    this.http
+      .put(this.tasksUrl + '/' + task.id, completedTask)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.userTasks.mutate(() => (task.completed = completed));
+        },
+        //! Error handling
+      });
+  }
+
+  public deleteTask(taskId: number): void {
+    this.http
+      .delete(this.tasksUrl + '/' + taskId)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: () => {
+          this.userTasks.update((tasks) =>
+            tasks.filter((task) => task.id !== taskId)
+          );
+          this.taskIsDeleted.set(true);
+        },
+        //! Error handling
+      });
+  }
+
+  public deleteTaksMessageAlertHander(): void {
+    if (this.taskIsDeleted()) {
+      this.snackBar.open(
+        'Task deleted successfully!',
+        'Close', {
+          horizontalPosition: 'end',
+          verticalPosition: 'top',
+        }
+      );
+    }
+  }
+}

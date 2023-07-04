@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --white: #e7e7e7;
+  --black: #2e2e2e;
+}
+
+$bp-huge: 93.75em; //1500px/16
+$bp-largest: 75em; //1200px/16
+$bp-large: 68.75em; //1100px
+$bp-medium: 56.5625em; //900px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; //500px
+$bp-smallestx: 18.75em; //300px
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  background-color: var(--black);
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--white);
+}
+
+mat-divider {
+  margin: 1rem 0;
+  width: 100%;
+}
+
+
