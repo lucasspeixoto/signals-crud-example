@@ -13,8 +13,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../users/user.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { Task } from './task.model';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task.component';
 import { first } from 'rxjs/operators';
 
@@ -29,13 +33,13 @@ import { first } from 'rxjs/operators';
     MatIconModule,
     MatDividerModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="container">
       <div class="container__header">
-        <span>Tasks {{ selectedUserName() }}</span>
+        <span>Tasks {{ selectedUserName() }} ({{ userTotalTasks() }})</span>
         <button mat-fab color="accent" (click)="addNewTask()">
           <mat-icon>add_circle</mat-icon>
         </button>
@@ -180,6 +184,8 @@ export class TaskDetailsComponent implements OnInit {
 
   public userTasks = this.taskService.userTasks;
 
+  public userTotalTasks = this.taskService.userTotalTasks;
+
   public selectedUserName = this.userService.selectedUserName;
 
   public ngOnInit(): void {
@@ -196,7 +202,7 @@ export class TaskDetailsComponent implements OnInit {
     this._dialogRef = this._dialog.open(AddTaskComponent, {
       width: '350px',
       height: 'auto',
-      data: this.selecterUserId
+      data: this.selecterUserId,
     });
 
     this._dialogRef.componentInstance.confirmClicked

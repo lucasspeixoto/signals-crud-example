@@ -1,4 +1,4 @@
-import { DestroyRef, Injectable, inject, signal } from '@angular/core';
+import { computed,DestroyRef, Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   takeUntilDestroyed,
@@ -25,15 +25,18 @@ export class TaskService {
 
   public tasksUrl = 'http://localhost:3000/tasks';
 
-  public taskIsDeleted = signal<boolean>(false);
-
   public userTasks = signal<Task[]>([]); //WriteblaSignal
+
+  public userTotalTasks = computed(() => this.userTasks().length);
 
   private userTasks$ = toObservable(this.userService.selectedUserId).pipe(
     switchMap((userId) =>
       this.http
         .get<Task[]>(this.usersUrl + '/' + userId + '/tasks')
-        .pipe(tap((tasks) => this.userTasks.set(tasks)))
+        .pipe(tap((tasks) => {
+          this.userTasks.set(tasks);
+
+        }))
     )
   );
 
@@ -81,21 +84,9 @@ export class TaskService {
           this.userTasks.update((tasks) =>
             tasks.filter((task) => task.id !== taskId)
           );
-          this.taskIsDeleted.set(true);
         },
         //! Error handling
       });
   }
 
-  public deleteTaksMessageAlertHander(): void {
-    if (this.taskIsDeleted()) {
-      this.snackBar.open(
-        'Task deleted successfully!',
-        'Close', {
-          horizontalPosition: 'end',
-          verticalPosition: 'top',
-        }
-      );
-    }
-  }
 }

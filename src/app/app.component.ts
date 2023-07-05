@@ -54,9 +54,12 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 export class AppComponent {
   public taskService = inject(TaskService);
 
-  public isTaskDeleted = this.taskService.taskIsDeleted;
-
   constructor() {
-    effect(() => this.taskService.deleteTaksMessageAlertHander());
+    effect(() => {
+      localStorage.setItem(
+        'TASKS',
+        JSON.stringify(this.taskService.userTasks())
+      );
+    });
   }
 }
