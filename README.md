@@ -19,4 +19,4 @@ Por mais que funcionasse muito bem, Zone.js não possibilita a identificação e
 
 Neste artigo vamos entender na prática os conceitos por trás dos signals através de um crud completo. Além de entender os conceitos vamos verificar situações especificas para melhor utilizar cada funcionalidade nova por trás dos signals.
 
-Com os signals conseguimos uma forma mais simples e eficiente de gerenciar estado em aplicações angular, neste exemplo prático vamos aprender diversas funcionalidades que nos auxiliam no gerenciamento de estado utilizando signals como, por exemplo: signals, computed, mutate, set, toSignal, toObservable e effect.
+Com os signals conseguimos uma forma mais simples e eficiente de gerenciar estado em aplicações angular, neste exemplo prático vamos aprender diversas funcionalidades que nos auxiliam no gerenciamento de estado utilizando signals como, por exemplo: signals, computed, update, set, toSignal, toObservable e effect.
