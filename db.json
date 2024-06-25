@@ -19,7 +19,7 @@
       "name": "Desafiar Darth Vader",
       "description": "Enfrentar Darth Vader e derrota-lo",
       "userId": 1,
-      "completed": false
+      "completed": true
     },
     {
       "id": 3,
@@ -27,13 +27,6 @@
       "description": "Não deixar a resistência perder a motivação na luta contra o império",
       "userId": 2,
       "completed": false
-    },
-    {
-      "userId": 1,
-      "name": "Test",
-      "description": "Desc",
-      "completed": false,
-      "id": 4
     }
   ]
 }
