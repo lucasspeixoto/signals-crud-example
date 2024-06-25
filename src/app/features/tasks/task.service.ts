@@ -1,4 +1,10 @@
-import { computed,DestroyRef, Injectable, inject, signal } from '@angular/core';
+import {
+  computed,
+  DestroyRef,
+  Injectable,
+  inject,
+  signal,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
   takeUntilDestroyed,
@@ -31,12 +37,11 @@ export class TaskService {
 
   private userTasks$ = toObservable(this.userService.selectedUserId).pipe(
     switchMap((userId) =>
-      this.http
-        .get<Task[]>(this.usersUrl + '/' + userId + '/tasks')
-        .pipe(tap((tasks) => {
+      this.http.get<Task[]>(this.usersUrl + '/' + userId + '/tasks').pipe(
+        tap((tasks) => {
           this.userTasks.set(tasks);
-
-        }))
+        })
+      )
     )
   );
 
@@ -45,7 +50,6 @@ export class TaskService {
   });
 
   public addTaskStatus(newTask: Task): void {
-
     this.http
       .post(this.tasksUrl, newTask)
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -69,7 +73,9 @@ export class TaskService {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
-          this.userTasks.mutate(() => (task.completed = completed));
+          this.userTasks.update((tasks) =>
+            tasks.map((_task) => (_task.id === task.id ? completedTask : _task))
+          );
         },
         //! Error handling
       });
@@ -88,5 +94,4 @@ export class TaskService {
         //! Error handling
       });
   }
-
 }

@@ -15,18 +15,11 @@
   ],
   "tasks": [
     {
-      "id": 1,
-      "name": "Destruir estrela da morte",
-      "description": "Destruir a estrela da morte para acabar com o Império",
-      "userId": 1,
-      "completed": false
-    },
-    {
       "id": 2,
       "name": "Desafiar Darth Vader",
       "description": "Enfrentar Darth Vader e derrota-lo",
       "userId": 1,
-      "completed": false
+      "completed": true
     },
     {
       "id": 3,
@@ -34,6 +27,13 @@
       "description": "Não deixar a resistência perder a motivação na luta contra o império",
       "userId": 2,
       "completed": false
+    },
+    {
+      "userId": 1,
+      "name": "Teste",
+      "description": "Desc",
+      "completed": true,
+      "id": 4
     }
   ]
 }
