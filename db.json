@@ -19,7 +19,7 @@
       "name": "Desafiar Darth Vader",
       "description": "Enfrentar Darth Vader e derrota-lo",
       "userId": 1,
-      "completed": true
+      "completed": false
     },
     {
       "id": 3,
@@ -30,9 +30,9 @@
     },
     {
       "userId": 1,
-      "name": "Teste",
+      "name": "Test",
       "description": "Desc",
-      "completed": true,
+      "completed": false,
       "id": 4
     }
   ]
