@@ -5,7 +5,7 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { TaskService } from './features/tasks/task.service';
 import { UserService } from './features/users/user.service';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
